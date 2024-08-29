@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\CommissionCalculator\Infrastructure\Enum;
 
-enum CountryCodeEnum: string {
+enum CountryCodeEnum: string
+{
     // Africa
     case DZ = 'DZ'; // Algeria
     case AO = 'AO'; // Angola
@@ -212,8 +213,9 @@ enum CountryCodeEnum: string {
     case UY = 'UY'; // Uruguay
     case VE = 'VE'; // Venezuela
 
-    public function isEurope(): bool {
-        return match($this) {
+    public function isEurope(): bool
+    {
+        return match ($this) {
             self::AL, self::AD, self::AT, self::BY, self::BE,
             self::BA, self::BG, self::HR, self::CZ, self::CY,
             self::EE, self::FI, self::FR, self::DE, self::GR,

@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace App\CommissionCalculator\Domain\Service;
 
 use App\CommissionCalculator\Domain\Entity\Transaction;
-use App\CommissionCalculator\Domain\Enum\CurrencyEnum;
 use App\CommissionCalculator\Domain\ValueObject\CommissionAmount;
-use App\CommissionCalculator\Domain\ValueObject\CommissionRate;
 use App\CommissionCalculator\Domain\ValueObject\Money;
 
 final readonly class CommissionCalculator
