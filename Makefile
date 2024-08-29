@@ -29,3 +29,7 @@ fix:
 analyse:
 	docker compose exec php ./vendor/bin/php-cs-fixer fix --allow-risky=yes --dry-run --verbose
 	docker compose exec php ./vendor/bin/psalm --no-cache
+	docker compose exec php ./vendor/bin/phpmd src,tests,public/index.php text phpmd.xml --color -vvv
+
+commission-calculate:
+	docker compose exec php bin/console commission:calculate

@@ -224,7 +224,7 @@ enum CountryCodeEnum: string
             self::MC, self::ME, self::NL, self::MK, self::NO,
             self::PL, self::PT, self::RO, self::RU, self::SM,
             self::RS, self::SK, self::SI, self::ES, self::SE,
-            self::CH, self::UA, self::GB, self::VA, self::DK => true,
+            self::CH, self::UA, self::VA, self::DK => true,
             default => false,
         };
     }

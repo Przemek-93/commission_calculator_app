@@ -28,3 +28,4 @@ This project is designed to showcase a commission calculator implemented with Do
 - `make xoff` - disable xdebug
 - `make fix` - automatically fixing code style by PHP Code Sniffer   
 - `make analyse` - start static analyse
+- `make commission-calculate` - run test command for calculation commission, shortcut for `docker compose exec php bin/console commission:calculate`

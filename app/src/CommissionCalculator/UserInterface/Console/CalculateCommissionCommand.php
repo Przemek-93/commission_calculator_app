@@ -30,15 +30,16 @@ final class CalculateCommissionCommand extends Command
     {
         $this->addArgument(
             'input',
-            InputArgument::REQUIRED,
+            InputArgument::OPTIONAL,
             'The name of the input file (without extensions)',
+            'input'
         );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            $output->writeln('Calculating commission: start');
+            $output->writeln('<info>Calculating commission: start</info>');
 
             $explodedInput = explode(
                 "\n",
@@ -52,7 +53,7 @@ final class CalculateCommissionCommand extends Command
                     throw new InvalidArgumentException('Invalid json input!');
                 }
 
-                $data = json_decode($row, true, 512, JSON_THROW_ON_ERROR);
+                $data = json_decode($row, true);
 
                 $this->commandBus->dispatch(
                     new CalculateCommission(

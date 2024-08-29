@@ -11,8 +11,8 @@ use App\CommissionCalculator\Domain\ValueObject\Money;
 final readonly class CommissionCalculator
 {
     public function __construct(
-        private BinLookupInterface $binLookup,
-        private ExchangeRateInterface $exchangeRate,
+        private BinCheckerProviderInterface $binCheckerProvider,
+        private ExchangeRateProviderInterface $exchangeRateProvider,
     ) {
     }
 
@@ -22,11 +22,11 @@ final readonly class CommissionCalculator
         $transactionAmount = $transaction->getAmount();
 
         if (false === $transactionCurrency->isEUR()) {
-            $exchangeRate = $this->exchangeRate->getExchangeRateByCurrency($transactionCurrency);
+            $exchangeRate = $this->exchangeRateProvider->getExchangeRateByCurrency($transactionCurrency);
             $transactionAmount = $transaction->getAmount()->convert($exchangeRate);
         }
 
-        $transactionCountryCode = $this->binLookup->getCountryCodeByBin($transaction->getBin());
+        $transactionCountryCode = $this->binCheckerProvider->getCountryCodeByBin($transaction->getBin());
         $commissionAmount = new CommissionAmount(
             $transactionAmount->value,
             $transactionCountryCode,

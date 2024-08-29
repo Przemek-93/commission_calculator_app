@@ -7,12 +7,16 @@ RUN apk add autoconf build-base libzip-dev zip linux-headers bash \
 WORKDIR /var/www
 COPY ./app /var/www
 
-RUN pecl install xdebug \
+ARG XDEBUG_INSTALL
+RUN if [ "$XDEBUG_INSTALL" = "1" ]; then \
+    pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && echo "zend_extension = xdebug.so" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.mode = debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.start_with_request = yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.discover_client_host = false" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    && echo "xdebug.discover_client_host = false" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    ; \
+fi
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
