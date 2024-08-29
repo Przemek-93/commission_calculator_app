@@ -1,4 +1,6 @@
 imports:
+    - { resource: '../src/CommissionCalculator/Infrastructure/Resources/config/services.yaml'}
+    - { resource: '../src/Shared/Infrastructure/Resources/config/services.yaml'}
 
 parameters:
 

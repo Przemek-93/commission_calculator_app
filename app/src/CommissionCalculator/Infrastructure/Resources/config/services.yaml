@@ -1,0 +1,16 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    _instanceof:
+        App\Shared\CQRS\CommandHandlerInterface:
+            tags: { name: messenger.message_handler, bus: command.bus }
+
+    App\CommissionCalculator\UserInterface\Console\CalculateCommissionCommand: ~
+
+when@test:
+    services:
+        _defaults:
+            autowire: true
+            autoconfigure: true
