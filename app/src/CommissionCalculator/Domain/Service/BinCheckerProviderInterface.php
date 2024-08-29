@@ -6,7 +6,7 @@ namespace App\CommissionCalculator\Domain\Service;
 
 use App\CommissionCalculator\Infrastructure\Enum\CountryCodeEnum;
 
-interface BinLookupInterface
+interface BinCheckerProviderInterface
 {
     public function getCountryCodeByBin(string $bin): CountryCodeEnum;
 }

@@ -13,6 +13,6 @@ enum CurrencyEnum: string
 
     public function isEUR(): bool
     {
-        return $this === self::EUR;
+        return self::EUR === $this;
     }
 }

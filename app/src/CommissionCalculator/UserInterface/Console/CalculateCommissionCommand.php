@@ -6,6 +6,7 @@ namespace App\CommissionCalculator\UserInterface\Console;
 
 use App\CommissionCalculator\Application\CQRS\Command\CalculateCommission;
 use App\Shared\CQRS\Command\CommandBusInterface;
+use InvalidArgumentException;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -28,15 +29,17 @@ final class CalculateCommissionCommand extends Command
     protected function configure(): void
     {
         $this->addArgument(
-                'input',
-                InputArgument::REQUIRED,
-                'The name of the input file (without extensions)',
-            );
+            'input',
+            InputArgument::OPTIONAL,
+            'The name of the input file (without extensions)',
+            'input'
+        );
     }
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            $output->writeln('Calculating commission: start');
+            $output->writeln('<info>Calculating commission: start</info>');
 
             $explodedInput = explode(
                 "\n",
@@ -46,8 +49,11 @@ final class CalculateCommissionCommand extends Command
             );
 
             foreach ($explodedInput as $row) {
-                json_validate($row);
-                $data = json_decode($row, true, 512, JSON_THROW_ON_ERROR);
+                if (false === json_validate($row)) {
+                    throw new InvalidArgumentException('Invalid json input!');
+                }
+
+                $data = json_decode($row, true);
 
                 $this->commandBus->dispatch(
                     new CalculateCommission(

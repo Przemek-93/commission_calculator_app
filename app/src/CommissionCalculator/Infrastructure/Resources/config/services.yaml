@@ -18,13 +18,13 @@ services:
 
     App\CommissionCalculator\Domain\Service\CommissionCalculator: ~
 
-    App\CommissionCalculator\Infrastructure\Service\BinLookup: ~
+    App\CommissionCalculator\Infrastructure\Service\BinHandyApiProvider: ~
 
-    App\CommissionCalculator\Domain\Service\BinLookupInterface: '@App\CommissionCalculator\Infrastructure\Service\BinLookup'
+    App\CommissionCalculator\Domain\Service\BinCheckerProviderInterface: '@App\CommissionCalculator\Infrastructure\Service\BinHandyApiProvider'
 
-    App\CommissionCalculator\Infrastructure\Service\ExchangeRate: ~
+    App\CommissionCalculator\Infrastructure\Service\ExchangeRateFrankfurterProvider: ~
 
-    App\CommissionCalculator\Domain\Service\ExchangeRateInterface: '@App\CommissionCalculator\Infrastructure\Service\ExchangeRate'
+    App\CommissionCalculator\Domain\Service\ExchangeRateProviderInterface: '@App\CommissionCalculator\Infrastructure\Service\ExchangeRateFrankfurterProvider'
 
     App\CommissionCalculator\Application\CQRS\Event\CommissionCalculatedHandler: ~
 

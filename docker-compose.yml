@@ -1,14 +1,9 @@
 services:
-  web:
-    image: nginx:latest
-    container_name: web-commission-calculator
-    ports:
-      - 8000:80
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./app:/var/www
   php:
-    build: ./
+    build:
+      context: ./
+      args:
+        XDEBUG_INSTALL: 0
     container_name: php-commission-calculator
     volumes:
       - ./app:/var/www
