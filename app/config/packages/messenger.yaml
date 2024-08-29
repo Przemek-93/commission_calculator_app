@@ -1,0 +1,7 @@
+framework:
+    messenger:
+#        buses:
+#            command.bus: ~
+
+#        transports:
+#            sync: 'sync://'
