@@ -4,10 +4,34 @@ services:
         autoconfigure: true
 
     _instanceof:
-        App\Shared\CQRS\CommandHandlerInterface:
+        App\Shared\CQRS\Command\CommandHandlerInterface:
             tags: { name: messenger.message_handler, bus: command.bus }
 
+        App\Shared\CQRS\Event\EventHandlerInterface:
+            tags: { name: messenger.message_handler, bus: event.bus }
+
     App\CommissionCalculator\UserInterface\Console\CalculateCommissionCommand: ~
+
+    App\CommissionCalculator\Application\CQRS\Command\CalculateCommissionHandler: ~
+
+    App\CommissionCalculator\Domain\Factory\TransactionFactory: ~
+
+    App\CommissionCalculator\Domain\Service\CommissionCalculator: ~
+
+    App\CommissionCalculator\Infrastructure\Service\BinLookup: ~
+
+    App\CommissionCalculator\Domain\Service\BinLookupInterface: '@App\CommissionCalculator\Infrastructure\Service\BinLookup'
+
+    App\CommissionCalculator\Infrastructure\Service\ExchangeRate: ~
+
+    App\CommissionCalculator\Domain\Service\ExchangeRateInterface: '@App\CommissionCalculator\Infrastructure\Service\ExchangeRate'
+
+    App\CommissionCalculator\Application\CQRS\Event\CommissionCalculatedHandler: ~
+
+    Symfony\Component\Console\Output\ConsoleOutput: ~
+
+    Symfony\Component\Console\Output\ConsoleOutputInterface: '@Symfony\Component\Console\Output\ConsoleOutput'
+
 
 when@test:
     services:

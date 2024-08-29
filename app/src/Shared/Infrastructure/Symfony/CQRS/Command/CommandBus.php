@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Symfony\CQRS;
+namespace App\Shared\Infrastructure\Symfony\CQRS\Command;
 
-use App\Shared\CQRS\CommandBusInterface;
-use App\Shared\CQRS\CommandInterface;
+use App\Shared\CQRS\Command\CommandBusInterface;
+use App\Shared\CQRS\Command\CommandInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 final readonly class CommandBus implements CommandBusInterface

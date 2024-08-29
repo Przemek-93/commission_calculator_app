@@ -2,6 +2,9 @@ framework:
     messenger:
         buses:
             command.bus: ~
+            event.bus: ~
+
+        default_bus: command.bus
 
         transports:
             sync: 'sync://'
