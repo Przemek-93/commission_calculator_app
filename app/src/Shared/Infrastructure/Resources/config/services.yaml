@@ -1,0 +1,18 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Shared\CQRS\Command\CommandBusInterface: '@App\Shared\Infrastructure\Symfony\CQRS\Command\CommandBus'
+
+    App\Shared\Infrastructure\Symfony\CQRS\Command\CommandBus:
+        arguments: [ '@command.bus' ]
+
+    App\Shared\CQRS\Event\EventBusInterface: '@App\Shared\Infrastructure\Symfony\CQRS\Event\EventBus'
+
+    App\Shared\Infrastructure\Symfony\CQRS\Event\EventBus:
+        arguments: [ '@event.bus' ]
+
+    App\Shared\Serializer\SerializerInterface: '@App\Shared\Infrastructure\Symfony\Serializer\Serializer'
+
+    App\Shared\Infrastructure\Symfony\Serializer\Serializer: ~
